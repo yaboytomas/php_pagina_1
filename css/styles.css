@@ -10,6 +10,11 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #f4f4f4;
+    overflow-x: hidden;
+}
+
+body.menu-open {
+    overflow: hidden;
 }
 
 a {
@@ -26,6 +31,7 @@ header {
     top: 0;
     z-index: 100;
     text-align: center;
+    width: 100%;
 }
 
 .logo h1 {
@@ -78,11 +84,31 @@ nav ul li a.active::after {
     background-color: #3498db;
 }
 
+/* Hamburger menu */
+.menu-toggle {
+    display: none;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    z-index: 101;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #333;
+    transition: all 0.3s ease-in-out;
+}
+
 /* Main content */
 main {
     padding: 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
 }
 
 /* Hero section */
@@ -93,6 +119,7 @@ main {
     padding: 3rem 1rem;
     border-radius: 5px;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .hero h2 {
@@ -138,6 +165,7 @@ main {
 /* Services section */
 .destacados {
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .destacados h2 {
@@ -164,7 +192,7 @@ main {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 1.5rem;
-    width: 300px;
+    width: calc(25% - 1.5rem);
     text-align: center;
     margin-bottom: 1.5rem;
 }
@@ -182,6 +210,7 @@ main {
 .page-header {
     text-align: center;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .page-header h2 {
@@ -194,6 +223,7 @@ main {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
+    width: 100%;
 }
 
 .contacto-info {
@@ -253,6 +283,7 @@ main {
     padding: 2rem;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
 .nosotros-item {
@@ -275,6 +306,7 @@ footer {
     color: #fff;
     padding: 2rem;
     margin-top: 2rem;
+    width: 100%;
 }
 
 .footer-content {
@@ -296,24 +328,185 @@ footer {
     color: #777;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-    }
-
-    nav ul li {
-        margin-right: 0;
-        margin-bottom: 0.5rem;
-    }
-
-    .contacto-contenido {
-        flex-direction: column;
-    }
-}
-
 .servicios-lista {
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+}
+
+/* Responsive design */
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1200px) {
+    .servicio-card {
+        width: calc(33.333% - 1.5rem);
+    }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 992px) {
+    .servicio-card {
+        width: calc(50% - 1.5rem);
+    }
+    
+    main {
+        padding: 1.5rem;
+    }
+    
+    .hero h2 {
+        font-size: 2.2rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem 0.5rem;
+        position: relative;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+        margin-top: 0.3rem;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    nav {
+        margin-top: 0;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100%;
+        background-color: white;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+        padding-top: 4rem;
+        transition: right 0.3s ease;
+        z-index: 100;
+    }
+    
+    nav ul.active {
+        right: 0;
+    }
+
+    nav ul li {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    nav ul li a {
+        font-size: 1.1rem;
+        padding: 0.8rem;
+    }
+    
+    main {
+        padding: 1rem;
+    }
+    
+    .hero {
+        padding: 2rem 1rem;
+    }
+    
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .servicio-card {
+        width: 100%;
+    }
+    
+    .contacto-contenido {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .contacto-info, 
+    .contacto-formulario {
+        width: 100%;
+    }
+    
+    footer {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 576px) {
+    header {
+        padding: 0.8rem 0.3rem;
+    }
+    
+    .logo h1 {
+        font-size: 1.3rem;
+    }
+    
+    main {
+        padding: 0.8rem;
+    }
+    
+    .hero {
+        padding: 1.5rem 0.8rem;
+    }
+    
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+    
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .btn-small {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .destacados h2,
+    .page-header h2 {
+        font-size: 1.3rem;
+    }
+    
+    .servicio-card {
+        padding: 1rem;
+    }
+    
+    .servicio-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 0.6rem;
+    }
+    
+    .contact-info {
+        font-size: 0.8rem;
+    }
 } 
